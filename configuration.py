@@ -1,9 +1,18 @@
-from libsubmit.providers import CobaltProvider
-from libsubmit.launchers import SimpleLauncher
-
 from parsl.config import Config
-from parsl.executors.mpix import MPIExecutor
+
+# for theta
+#from parsl.executors.mpix import MPIExecutor
+from parsl.providers import CobaltProvider
+from parsl.launchers import SimpleLauncher
 from parsl.executors.threads import ThreadPoolExecutor
+
+# for cori htc
+from requests import get
+from parsl.providers import SlurmProvider
+from parsl.launchers import SrunLauncher
+from parsl.executors import HighThroughputExecutor
+
+
 
  # this should scale up to 802 in real life, or up to 8 or 16 in debug queue
  # note at present, 1 is required to run the rank 0 controller, not any app tasks
@@ -109,7 +118,12 @@ ulimit -Sv 120000000
 export SINGULARITY_HOME=/home/antoniov                                                                                                                                                                                                                     
 export OMP_NUM_THREADS=1"""
 
-mpi_executor = MPIExecutor(
+"""
+Commented out because MPIExecutor does not exist
+in the version of parsl we're going to use for
+this run -- it's been replaced by HighThoughputExector
+and ExtremeScaleExecutor.
+theta_executor = MPIExecutor(
             label="worker-nodes",
             jobs_q_url=JOB_URL,
             results_q_url=RESULT_URL,
@@ -127,10 +141,29 @@ mpi_executor = MPIExecutor(
                 cmd_timeout=60
             ),
         )
+"""
+
+cori_executor = HighThroughputExecutor(
+            label='worker-nodes',
+            public_ip=get('https://api.ipify.org').text,
+            worker_debug=True,
+            provider=SlurmProvider(
+                'debug',
+                nodes_per_block=2,
+                tasks_per_node=1,
+                init_blocks=3,
+                min_blocks=3,
+                max_blocks=5,
+                overrides="""#SBATCH --constraint=haswell
+source setup_parsl_env.sh""",
+                launcher=SrunLauncher(),
+                cmd_timeout=60
+            ),
+        )
 
 local_executor = ThreadPoolExecutor(max_threads=2, label="submit-node")
 
 parsl_config = Config(
-    executors=[ mpi_executor, local_executor ],
+    executors=[ cori_executor, local_executor ],
     strategy=None,
 )

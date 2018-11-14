@@ -43,8 +43,8 @@ From: lsstdesc/stack-sims:w_2018_35-sims_2_10_0-v2
    scons
    cd ../GalSim
    git checkout 3af1a30bdb3f2ac0d0abcc957b175d8d01dae79c
-   pip install -r requirements.txt
-   python setup.py install
+   pip install -r requirements.txt --user
+   python setup.py install --user
    cd ..
    git clone https://github.com/LSSTDESC/ALCF_1.2i.git
 

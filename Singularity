@@ -14,7 +14,6 @@ From: lsstdesc/stack-sims:w_2018_35-sims_2_10_0-v2
    git clone https://github.com/lsst/sims_GalSimInterface.git
    git clone https://github.com/LSSTDESC/imSim.git
    git clone https://github.com/lsst/obs_lsstCam.git
-   git clone https://github.com/GalSim-developers/GalSim.git
    setup -r sims_photUtils -j
    setup -r sims_skybrightness -j
    setup -r sims_GalSimInterface -j
@@ -41,10 +40,6 @@ From: lsstdesc/stack-sims:w_2018_35-sims_2_10_0-v2
    cd ../obs_lsstCam
    git checkout imsim-0.1.0
    scons
-   cd ../GalSim
-   git checkout 3af1a30bdb3f2ac0d0abcc957b175d8d01dae79c
-   pip install -r requirements.txt --user
-   python setup.py install --user
    cd ..
    git clone https://github.com/LSSTDESC/ALCF_1.2i.git
 

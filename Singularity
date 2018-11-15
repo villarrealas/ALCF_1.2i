@@ -41,6 +41,7 @@ From: lsstdesc/stack-sims:w_2018_35-sims_2_10_0-v2
    git checkout imsim-0.1.0
    scons
    cd ..
+   chown -R . lsst
    git clone https://github.com/LSSTDESC/ALCF_1.2i.git
    git clone https://github.com/GalSim-developers/GalSim.git
    cd GalSim

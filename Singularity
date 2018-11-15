@@ -44,7 +44,8 @@ From: lsstdesc/stack-sims:w_2018_35-sims_2_10_0-v2
    git clone https://github.com/LSSTDESC/ALCF_1.2i.git
    git clone https://github.com/GalSim-developers/GalSim.git
    cd GalSim
-   chown lsst ..
+   chown lsst /DC2
+   chgrp lsst /DC2
    pip install -r requirements.txt
 %environment
    source /opt/lsst/software/stack/loadLSST.bash

@@ -45,7 +45,7 @@ From: lsstdesc/stack-sims:w_2018_26-sims_2_9_0-v3
    git clone https://github.com/GalSim-developers/GalSim.git
    cd GalSim
    pip install -r requirements.txt
-   python setup.py install
+   python setup.py install > galsim_log.txt
 %environment
    source /opt/lsst/software/stack/loadLSST.bash
    setup lsst_sims

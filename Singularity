@@ -1,5 +1,5 @@
 Bootstrap: docker
-From: lsstdesc/stack-sims:w_2018_35-sims_2_10_0-v2
+From: lsstdesc/stack-sims:w_2018_26-sims_2_9_0-v3
 
 %post
    set +e
@@ -44,9 +44,8 @@ From: lsstdesc/stack-sims:w_2018_35-sims_2_10_0-v2
    git clone https://github.com/LSSTDESC/ALCF_1.2i.git
    git clone https://github.com/GalSim-developers/GalSim.git
    cd GalSim
-   chown lsst /DC2
-   chgrp lsst /DC2
    pip install -r requirements.txt
+   python setup.py install
 %environment
    source /opt/lsst/software/stack/loadLSST.bash
    setup lsst_sims

@@ -59,6 +59,9 @@ From: lsstdesc/stack-sims:w_2018_26-sims_2_9_0-v3
    setup -r sims_skybrightness -j
    setup -r sims_photUtils -j
    setup -r GalSim -j
+   cd GalSim
+   scons
+   cd ..
    export OMP_NUM_THREADS=1
 
 %runscript

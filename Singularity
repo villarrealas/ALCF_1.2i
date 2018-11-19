@@ -42,26 +42,24 @@ From: lsstdesc/stack-sims:w_2018_35-sims_2_10_0-v3
    scons
    cd ..
    git clone https://github.com/LSSTDESC/ALCF_1.2i.git
-#   git clone https://github.com/GalSim-developers/GalSim.git
-#   setup -r GalSim -j
-#   cd GalSim
-#   set +e
-#   scons
-#   set -e
+   git clone https://github.com/GalSim-developers/GalSim.git
+   eups declare -r . GalSim -t current
+   setup -r GalSim -j
+   cd GalSim
+   set +e
+   scons
+   set -e
 
 %environment
    source /opt/lsst/software/stack/loadLSST.bash
    setup lsst_sims
-   git clone https://github.com/GalSim-developers/GalSim.git
-   pip install -r requirements.txt --user
-   python setup.py install --usuer
-   export PYTHONPATH="${PYTHONPATH}:~/local/bin"
    cd /DC2
    setup -r sims_GalSimInterface -j
    setup -r imSim -j
    setup -r obs_lsstCam -j
    setup -r sims_skybrightness -j
    setup -r sims_photUtils -j
+   setup -r GalSim -j
    export OMP_NUM_THREADS=1
 
 %runscript

@@ -43,7 +43,7 @@ From: lsstdesc/stack-sims:w_2018_26-sims_2_9_0-v3
    cd ..
    git clone https://github.com/LSSTDESC/ALCF_1.2i.git
    git clone https://github.com/GalSim-developers/GalSim.git
-   setup GalSim
+   setup -r GalSim -j
    cd GalSim
    set +e
    scons

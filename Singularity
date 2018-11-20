@@ -45,9 +45,8 @@ From: lsstdesc/stack-sims:w_2018_35-sims_2_10_0-v3
    cd GalSim
    eups declare -r . galsim -t current
    setup -r . -j
-   pip install -r requirements.txt
    set +e
-   scons -Q WITH_UPS=True EIGEN_DIR=/opt/lsst/software/stack/stack/miniconda3-4.5.4-fcd27eb/Linux64/eigen/3.3.4.lsst1
+   scons -Q WITH_UPS=True EIGEN_DIR=/opt/lsst/software/stack/stack/miniconda3-4.5.4-fcd27eb/Linux64/eigen/3.3.4.lsst1/include
    set -e
    cd ..
    git clone https://github.com/LSSTDESC/ALCF_1.2i.git

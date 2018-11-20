@@ -42,11 +42,11 @@ From: lsstdesc/stack-sims:w_2018_35-sims_2_10_0-v3
    scons
    cd ..
    git clone https://github.com/GalSim-developers/GalSim.git
-   eups declare -r . GalSim -t current
-   setup -r GalSim -j
    cd GalSim
+   eups declare -r . galsim -t current
+   setup -r . -j
    set +e
-   scons
+   scons -Q WITH_UPS=True
    set -e
    cd ..
    git clone https://github.com/LSSTDESC/ALCF_1.2i.git

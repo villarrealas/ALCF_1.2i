@@ -43,6 +43,7 @@ From: lsstdesc/stack-sims:w_2018_35-sims_2_10_0-v3
    cd ..
    git clone https://github.com/GalSim-developers/GalSim.git
    cd GalSim
+   git checkout master
    eups declare -r . galsim -t current
    setup -r . -j
    set +e

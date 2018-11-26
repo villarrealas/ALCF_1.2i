@@ -1,5 +1,5 @@
 Bootstrap: docker
-From: lsstdesc/stack-sims:w_2018_35-sims_2_10_0-v3
+From: lsstdesc/stack-sims:w_2018_39-sims_2_11_1-v2
 
 %post
    set +e
@@ -9,36 +9,27 @@ From: lsstdesc/stack-sims:w_2018_35-sims_2_10_0-v3
    setup lsst_sims
    mkdir /DC2
    cd /DC2
-   git clone https://github.com/lsst/sims_photUtils.git
-   git clone https://github.com/lsst/sims_skybrightness.git
    git clone https://github.com/lsst/sims_GalSimInterface.git
    git clone https://github.com/LSSTDESC/imSim.git
    git clone https://github.com/lsst/obs_lsstCam.git
-   setup -r sims_photUtils -j
-   setup -r sims_skybrightness -j
+   git clone https://github.com/lsst/obs_lsst.git
    setup -r sims_GalSimInterface -j
    setup -r imSim -j
    setup -r obs_lsstCam -j
-   cd sims_photUtils
-   git checkout ba5b942a9359e7eceea918e8663e6225cfb49dfc
-   set +e
-   scons
-   set -e
-   cd ../sims_skybrightness
-   git checkout fdd58c7eb0414e89f5c7fa12eccf8809acabcf92
-   set +e
-   scons
-   set -e
-   cd ../sims_GalSimInterface
+   cd sims_GalSimInterface
+   git checkout u/jchiang/rmjarvis/simple_faint
    set +e
    scons
    set -e
    cd ../imSim
-   git checkout dc2_run2.0_rc
-   sed -i -e 's/_stepK/_getStepK/g' python/desc/imsim/atmPSF.py
+   git checkout master
    scons
    cd ../obs_lsstCam
    git checkout imsim-0.1.0
+   scons
+   cd ../obs_lsst
+   eups declare -r . obs_lsst -t current
+   setup -r . -j
    scons
    cd ..
    git clone https://github.com/GalSim-developers/GalSim.git
@@ -59,9 +50,9 @@ From: lsstdesc/stack-sims:w_2018_35-sims_2_10_0-v3
    setup -r sims_GalSimInterface -j
    setup -r imSim -j
    setup -r obs_lsstCam -j
-   setup -r sims_skybrightness -j
-   setup -r sims_photUtils -j
-   cd GalSim
+   cd obs_lsst
+   setup -r . -j
+   cd ../GalSim
    setup -r . -j
    cd ..
    export OMP_NUM_THREADS=1

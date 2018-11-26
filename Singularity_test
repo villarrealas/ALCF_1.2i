@@ -1,5 +1,5 @@
 Bootstrap: docker
-From: antoniov/alcf_run2.0i:latest
+From: avillarreal/alcf_run2.0i:latest
 
 %environment
    source /opt/lsst/software/stack/loadLSST.bash

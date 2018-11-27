@@ -4,7 +4,7 @@ From: avillarreal/alcf_run2.0i:latest
 %environment
    source /opt/lsst/software/stack/loadLSST.bash
    setup lsst_sims
-   cd /home/lsst/DC2
+   cd /DC2
    setup -r sims_GalSimInterface -j
    setup -r imSim -j
    setup -r obs_lsstCam -j
